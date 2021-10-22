@@ -8,5 +8,4 @@ Ini Merupakan Project Tugas Besar Kuliah Temu Kembali Citra
 | M.Randy Anugerah| 201810370311051  |
 | Alfin Yusriansyah| 201810370311057 |
 
-Dataset
 Dataset : 
