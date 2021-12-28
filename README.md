@@ -8,4 +8,4 @@ Ini Merupakan Project Tugas Besar Kuliah Temu Kembali Citra
 | M.Randy Anugerah| 201810370311051  |
 | Alfin Yusriansyah| 201810370311057 |
 
-Dataset : [CelebFaces Attributes (CelebA) Dataset](https://www.kaggle.com/jessicali9530/celeba-dataset)
+Dataset : [CNN Corel Images Dataset](https://www.kaggle.com/elkamel/cnn-corel-images/data)
