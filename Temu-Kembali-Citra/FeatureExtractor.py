@@ -1,25 +1,21 @@
-# Import libraries 
+ #Import libraries 
 import torch
 import torch.nn as nn
-import torch.optim as optim
 from torch.autograd import Variable
+import streamlit as st
 import numpy as np
 from numpy import linalg as LA
 import torchvision
 import torch.nn.functional as F
-from torchvision import datasets, models, transforms
 import time
-from torchvision import transforms
-import copy
-import os
-import h5py
-from skimage.transform import rescale, resize, downscale_local_mean
 from PIL import Image
-import pandas as pd
+from skimage.transform import resize
 import warnings
+import os
 warnings.filterwarnings('ignore')
 
 # Create the network to extract the features
+
 class MyResNetFeatureExtractor(nn.Module):
     def __init__(self, resnet, transform_input=False):
         super(MyResNetFeatureExtractor, self).__init__()
@@ -56,45 +52,37 @@ class MyResNetFeatureExtractor(nn.Module):
         x = F.avg_pool2d(x, kernel_size=7, stride=7)
 
         return x
-# Import pre-trained model from by using torchvision package
-model = torchvision.models.resnet50(pretrained = True) # resnet 50 model is imported
 
-# set the model train False since we are using our feature extraction network 
+model = torchvision.models.resnet50(pretrained = True) 
+
 model.train(False)
 
-# Set our model with pre-trained model 
 my_resnet = MyResNetFeatureExtractor(model)
 
 def extractor(data):
-        since = time.time()
-        # read images images from a directory
-        #root = './index/'
-        list_imgs_names = os.listdir(data)
-        #list_imgs_names
-        # create an array to store features 
-        N = len(list_imgs_names)
-        fea_all = np.zeros((N, 2048))
-        # define empy array to store image names
-        image_all = []
-        # extract features 
-        for ind, img_name in enumerate(list_imgs_names):
-            img_path = os.path.join(data, img_name)
-            image_np = Image.open(img_path)
-            image_np = np.array(image_np)
-            image_np = resize(image_np, (224, 224))
-            image_np = torch.from_numpy(image_np).permute(2, 0, 1).float()
-            image_np = Variable(image_np.unsqueeze(0))   #bs, c, h, w
-            fea = my_resnet(image_np)
-            fea = fea.squeeze()
-            fea = fea.cpu().data.numpy()
-            fea = fea.reshape((1, 2048))
-            fea = fea / LA.norm(fea)
-            fea_all[ind] = fea
-            image_all.append(img_name)
+    since = time.time()
+    list_imgs_names = os.listdir(data)
+    N = len(list_imgs_names)
+    fea_all = np.zeros((N, 2048))
+    image_all = [] 
+    for ind, img_name in enumerate(list_imgs_names):
+        img_path = os.path.join(data, img_name)
+        image_np = Image.open(img_path)
+        image_np = np.array(image_np)
+        image_np = resize(image_np, (224, 224))
+        image_np = torch.from_numpy(image_np).permute(2, 0, 1).float()
+        image_np = Variable(image_np.unsqueeze(0))
+        fea = my_resnet(image_np)
+        fea = fea.squeeze()
+        fea = fea.cpu().data.numpy()
+        fea = fea.reshape((1, 2048))
+        fea = fea / LA.norm(fea)
+        fea_all[ind] = fea
+        image_all.append(img_name)
+        
+    time_elapsed = time.time() - since 
 
-        time_elapsed = time.time() - since 
+    st.write('Feature extraction complete in {:.02f}s'.format(time_elapsed % 60))
 
-        print('Feature extraction complete in {:.02f}s'.format(time_elapsed % 60))
-
-        return fea_all, image_all
+    return fea_all, image_all
 
