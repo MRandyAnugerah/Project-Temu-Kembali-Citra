@@ -30,8 +30,6 @@ Tools yang digunakan untuk compile/running program adalah Google Colab dan Visua
 ## Hasil input pertama dari aplikasi
 ![image](hasil.jpg)
 
-##---------------------------------------
-
 ## Input kedua dari aplikasi
 ![image](input1.jpg)
 
