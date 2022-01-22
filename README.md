@@ -20,7 +20,7 @@ Terdiri dari : Beaches, Bus, Dinosaurs, Elephants, Flower, Foods, Horses, Monume
 Tools yang digunakan untuk compile/running program adalah Google Colab dan Visual basic Code.
 
 ## Cara Menjalankan App program di lokal
-- Clone github ini : **https://github.com/alfinyusriansyah/Project_Pembelajaran_Mesin.git**
+- Clone github ini : **https://github.com/MRandyAnugerah/Project-Temu-Kembali-Citra.git**
 - Buka project **temu-Kembali-Citra** pada text editor lokal anda dan instal *dependency* dan *library* yang dibutuhkan terutama **streamlit** untuk menjalakan app ini,
 - jalankan **app.py** pada terminal dengan mengetik **streamlit run app.py**
 
