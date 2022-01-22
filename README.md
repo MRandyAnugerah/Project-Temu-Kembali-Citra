@@ -25,7 +25,7 @@ Tools yang digunakan untuk compile/running program adalah Google Colab dan Visua
 - jalankan **app.py** pada terminal dengan mengetik **streamlit run app.py**
 
 ## Input pertama dari aplikasi
-![image](input.png)
+![image](input.jpg)
 
 ## Input kedua dari aplikasi
 ![image](input1.png)
