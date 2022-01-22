@@ -24,7 +24,11 @@ Tools yang digunakan untuk compile/running program adalah Google Colab dan Visua
 - Buka project **temu-Kembali-Citra** pada text editor lokal anda dan instal *dependency* dan *library* yang dibutuhkan terutama **streamlit** untuk menjalakan app ini,
 - jalankan **app.py** pada terminal dengan mengetik **streamlit run app.py**
 
-## Hasil dari running
-![image](2.png)
-![image](4.png)
+## Input dari aplikasi
+![image](input.png)
+![image](input1.png)
+
+## Hasil dari aplikasi
+![image](hasil.jpg)
+![image](hasil1.jpg)
 
